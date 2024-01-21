@@ -1,20 +1,25 @@
 import pika
 import json
-
-data = {"Nome": "Lucas silva"}
-
-
-connection = pika.ConnectionParameters(
-    host="localhost",
-    port=5672,
-    credentials=pika.PlainCredentials(username="guest", password="guest"),
-)
+from rabbit_connection import RabbitmqConnection
 
 
-channel = pika.BlockingConnection(connection).channel()
-channel.basic_publish(
-    exchange="app_exchange",
-    routing_key="",
-    body=json.dumps(data),
-    properties=pika.BasicProperties(delivery_mode=2),
-)
+connection = RabbitmqConnection()
+
+
+class PublisherMQ:
+    def __init__(self) -> None:
+        self.exchange = "app_exchange"
+        self.routing_key = ""
+        self.body = {"Nome": "Lucas silva"}
+
+    def send_message(self):
+        connection.channel.basic_publish(
+            exchange=self.exchange,
+            routing_key=self.routing_key,
+            body=json.dumps(self.body),
+            properties=pika.BasicProperties(delivery_mode=2),
+        )
+
+
+publisher = PublisherMQ()
+publisher.send_message()
