@@ -1,4 +1,4 @@
-from rabbit_connection import RabbitmqConnection
+from connection import RabbitmqConnection
 import logging
 
 rabbitmq_connection = RabbitmqConnection()
@@ -11,7 +11,7 @@ class RabbitmqConsumer:
         self.channel = rabbitmq_connection.channel
         self.connect_queue()
 
-    def connect_queue(self): # TODO possivel refatoração
+    def connect_queue(self):  # TODO possivel refatoração
         self.channel.queue_declare(
             queue=self.queue,
             durable=True,

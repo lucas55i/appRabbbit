@@ -1,7 +1,6 @@
 import pika
 import json
-from rabbit_connection import RabbitmqConnection
-
+from connection import RabbitmqConnection
 
 connection = RabbitmqConnection()
 
