@@ -1,7 +1,7 @@
 import pika
 import json
 
-dado = {"Nome": "Lucas silva"}
+data = {"Nome": "Lucas silva"}
 
 
 connection = pika.ConnectionParameters(
@@ -15,6 +15,6 @@ channel = pika.BlockingConnection(connection).channel()
 channel.basic_publish(
     exchange="app_exchange",
     routing_key="",
-    body=json.dumps(dado),
+    body=json.dumps(data),
     properties=pika.BasicProperties(delivery_mode=2),
 )
