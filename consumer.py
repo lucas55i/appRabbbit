@@ -1,4 +1,4 @@
-from connection import RabbitmqConnection
+from rabbit import RabbitmqConnection
 import logging
 
 rabbitmq_connection = RabbitmqConnection()
