@@ -9,6 +9,9 @@ class RabbitmqConnection:
         self.password = "guest"
         self.channel = self.create_channel()
 
+    def start_connection(self):
+        pass
+
     def create_channel(self):
         connection_paramters = pika.ConnectionParameters(
             host=self.host,
@@ -20,3 +23,6 @@ class RabbitmqConnection:
 
         channel = pika.BlockingConnection(connection_paramters).channel()
         return channel
+
+
+rabbitmq_connection = RabbitmqConnection()
